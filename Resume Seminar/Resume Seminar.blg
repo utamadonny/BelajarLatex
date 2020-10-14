@@ -1,0 +1,17 @@
+[1] Config.pm:312> INFO - This is Biber 2.15 (beta)
+[1] Config.pm:315> INFO - Logfile is 'Resume Seminar.blg'
+[212] biber-MSWIN64:330> INFO - === 
+[243] Biber.pm:415> INFO - Reading 'Resume Seminar.bcf'
+[521] Biber.pm:952> INFO - Found 2 citekeys in bib section 0
+[573] Biber.pm:4334> INFO - Processing section 0
+[606] Biber.pm:4523> INFO - Looking for bibtex format file 'References.bib' for section 0
+[627] bibtex.pm:1682> INFO - LaTeX decoding ...
+[652] bibtex.pm:1494> INFO - Found BibTeX data source 'References.bib'
+[697] Utils.pm:395> WARN - year field '-' in entry 'unila:2' is not an integer - this will probably not sort properly.
+[727] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[728] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[728] Biber.pm:4162> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[728] Biber.pm:4168> INFO - No sort tailoring available for locale 'en-US'
+[742] bbl.pm:651> INFO - Writing 'Resume Seminar.bbl' with encoding 'UTF-8'
+[745] bbl.pm:754> INFO - Output to Resume Seminar.bbl
+[749] Biber.pm:128> INFO - WARNINGS: 1

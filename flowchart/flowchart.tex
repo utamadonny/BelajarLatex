@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman,english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height = 1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height = 1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height = 1cm, text centered, text width=3cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height = 1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick, ->, >=stealth]
+
+\begin{document}
+Donny Prakarsa Utama
+
+3332170032
+
+Tugas Embedded Systems – Watchdog TImer\\
+
+1.	Jelaskan cara kerja watchdog timer dan gambarkan flowchartnya! 
+
+2.	Bagaimana cara implementasi watchdog timer pada sebuah sistem embedded? 
+
+3.	Berikan contoh sistem embedded dalam kehidupan sehari-hari yang menggunakan watchdog timer, kemudian deskripsikan fungsinya pada sistem tersebut!\\
+
+Jawab:
+
+1.	Watchdog timer bekerja untuk mereset MCU (Microcontroller Clock Unit) ketika timer pada watchdog tidak di-reset oleh CPU. Watchdog yang tidak di-reset ini mengindikasikan adanya abnormalitas pada Microcontroller sehingga watchdog timer memiliki peran untuk mereset microcontroller.
+Flowchart,
+
+2.	Watchdog timer biasanya dipasang pada sistem embedded sebagai proteksi dari sistem tersebut. Jadi, apabila terjadi error atau kesalahan pada software atau hardware yang membuat watchdog timer tidak di-reset maka watchdog timer akan mereset sistem tersebut. Pada Gambar 1 adalah salah satu contoh implementasi WDT(Watchdog Timer) untuk kondisi error berupa tidak adanya masukkan. 
+Contoh implementasi program sesuai Gambar 1 Flowchart menggunakan Arduino
+
+3.	Contoh implementasi Watchdog adalah pada mesin ATM. Jadi ketika ATM mengalami hang saat kartu ATM dimasukkan ada waktu tunggu (alarm state) apabila clock(waktu) mencapai nilai yang ditetapkan watchdog timer sehingga watchdog timer akan mereset sistem dan mengembalikan ATM dalam kondisi awal (initial state yang mana dapat digunakan kembali seperti semula.
+
+
+
+\begin{tikzpicture}[node distance = 2cm]
+\node (start) [startstop] {Start};
+\node (in1) [io, below of=start] {Input};
+\node (pro1) [process, below of=in1] {Process 1};
+\node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+\node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a  text tex text text text text text text text};
+\node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+\node (out1) [io, below of=pro2a] {Output};
+\node (stop) [startstop, below of=out1] {Stop};
+
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (pro1);
+\draw [arrow] (pro1) -- (dec1);
+\draw [arrow] (dec1) -- node [anchor=east] {yes} (pro2a);
+\draw [arrow] (dec1) -- node [anchor=south] {no} (pro2b);
+\draw [arrow] (pro2b) |- (pro1);
+\draw [arrow] (pro2a) -- (out1);
+\draw [arrow] (out1) -- (stop);
+
+\end{tikzpicture}
+
+
+
+
+
+
+\end{document}
