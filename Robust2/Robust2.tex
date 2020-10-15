@@ -2,7 +2,8 @@
 \usepackage{graphicx}
 
 \title{Tugas 2 Robust Control : Uncertainty }
-\author{Donny Prakarsa Utama}
+\author{Donny Prakarsa Utama\\ \texttt{3332170032}
+\and Ringga Dwi Raju\\ \texttt{3332170029} }
 \maketitle
 
 \begin{document}   
@@ -40,5 +41,12 @@ Jawab : ada 2 Uncertainty yaitu $T_{Slow}$ dan $T_{Fast}$, dan fungsi alih dapat
     sys = tf([1],[t1*t2 t1+t2 1])
 \end{verbatim}
 
+3. $G(s)=\frac{1}{s+1}.\frac{\omega^2}{s^2+2\zeta\omega s+\omega^2},\zeta \in [0.1,0.2],\omega\in[90,110]$\\
+Jawab : ada 2 uncertainty yaitu $\zeta$ dan $\omega$ fungsi alih dapat dibentuk menjadi $   \frac{\omega ^2}{s^3+(2 \zeta   \omega +1)s^2+(2 \zeta   \omega + \omega ^2)s+\omega ^2} $
+\begin{verbatim}
+    w = ureal ('w', 100, 'PlusMinus',[-10,10]);
+    z = ureal ('z',0.15 , 'PlusMinus',[-0.05,0.05]);
+    sys= tf([w^2],[1 2*z*w+1 2*z*w+w^2 w^2])
+\end{verbatim}
 
 \end{document}
