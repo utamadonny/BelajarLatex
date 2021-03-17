@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\begin{document}
+\title{Rangkuman Paper}
+\author{Donny Prakarsa Utama}
+\maketitle
+
+\cite{Valenti2015} Estimasi orientasi sangat penting untuk mendapatkan feedback yang baik dari controller sensor yang low 
+cost pada kendaraan MAV (Micro Aerial Vehicle). 
+Tantangannya adalah rendahnya akurasi pada sensor dan 
+noisy dari sensor IMU MEMS. Penyelesaian masalah pada paper ini memisahkan problem tilt quaternion dan arah quaternion menjadi 2 sub sistem. Prosedur ini di klaim untuk memisahkan disturbansi magnet roll dan pitch dari medan magnet yang tidak diinginkan. Paper ini merupakan algroritma complementary filter baru untuk 9 DoF
+
+\begin{equation}
+^A_B q = [ q_0 ~ q_1~  q_2~  q_3 ]
+\end{equation}
+\begin{equation}
+    ^B_A q^* = ^A_Bq = [ q_0~ -q_1~ -q_2~ -q_3 ]^T
+\end{equation}
+\begin{equation}
+p\otimes q=\left[\begin{matrix}p_0q_0-p_1q_1-p_2q_2-p_3q_3\\p_0q_1+p_1q_0+p_2q_3-p_3q_1\\p_0q_2-p_1q_3+p_2q_0+p_3q_1\\p_0q_3+p_1q_2-p_2q_1+p_3q_0\end{matrix}\right]
+\end{equation}
+\begin{equation}
+    ^Bv_q=^B_A q \otimes ^Av_q \otimes ^B_Aq^*
+\end{equation}
+\begin{equation}
+    v_q = [0 ~ v]^T = [0 ~ v_x ~v_y~v_z]^T
+\end{equation}
+\begin{equation}
+    ^Av_q=^B_Aq^* \otimes ^Bv_q \otimes ^B_Aq = ^A_Bq \otimes ^Bv_q \otimes ^A_Bq^* 
+\end{equation}
+\begin{equation}
+    ^Bv=R(^B_Aq)^Av
+\end{equation}
+\begin{equation}
+    R(^B_Aq)=\left[ 
+        \begin{matrix}
+            q_0^2+q_1^2-q_2^2-q_3^2 &2(q_1q_2-q_0q_3)&2(q_1q_3-q_0q_2)\\
+            2(q_1q_2-q_0q_3)&q_0^2+q_1^2-q_2^2-q_3^2&2(q_2q_3-q_0q_1) \\
+            2(q_1q_3+q_0q_2)& 2(q_2q_3+q_0q_1) &q_0^2+q_1^2-q_2^2-q_3^2
+        \end{matrix}
+    \right]
+\end{equation}
+\begin{equation}
+    ^Av=R(^A_Bq)^Bv=R^T(^B_Aq)^Bv
+\end{equation}
+
+Rumus nya sama kayak madgwick filter, karena emang masih sama-sama complementary filter. Yang membedakan perhitungan itu cuma Quaternion from Earth-Field Observations :\emph{ Quaternion from Accelerometer Readings} dan \emph{ Quaternion from Magnetometer Readings}
+
+\cite{Asrofi2015} Paper ini menjelaskan stabilisasi robot berkaki enam (hexapod) dengan sensor IMU 9DoF pada bidang miring berbasis \emph{inverse kinematic}
+Menggunakan fuzzy-PID sebagai kendali untuk mempertahankan \emph{body} robot
+
+\bibliography{Reference}
+\bibliographystyle{ieeetr}
+
+
+
+\end{document}

@@ -1,0 +1,87 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.4
+% see http://writer2latex.sourceforge.net for more info
+\documentclass[a4paper]{article}
+\usepackage[ascii]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{hyperref}
+\hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
+% Text styles
+\newcommand\textstyleEmphasis[1]{\textit{#1}}
+% Page layout (geometry)
+\setlength\voffset{-1in}
+\setlength\hoffset{-1in}
+\setlength\topmargin{0.7874in}
+\setlength\oddsidemargin{0.7874in}
+\setlength\textheight{10.118099in}
+\setlength\textwidth{6.6932993in}
+\setlength\footskip{0.0cm}
+\setlength\headheight{0cm}
+\setlength\headsep{0cm}
+% Footnote rule
+\setlength{\skip\footins}{0.0469in}
+\renewcommand\footnoterule{\vspace*{-0.0071in}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.0071in}}\vspace*{0.0398in}}
+% Pages styles
+\makeatletter
+\newcommand\ps@Standard{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{}
+  \renewcommand\@evenfoot{}
+  \renewcommand\thepage{\arabic{page}}
+}
+\makeatother
+\pagestyle{Standard}
+\title{}
+\author{}
+\date{2021-03-15}
+\begin{document}
+{\centering
+Rangkuman Paper
+\par}
+
+
+\bigskip
+
+\label{ref:ADDINCSLCITATIONcitationItemsidITEM1itemDataDOI103390s150819302ISBN1212650824abstractOrientationestimationusinglowcostsensorsisanimportanttaskforMicroAerialVehiclesMAVsinordertoobtainagoodfeedbackfortheattitudecontrollerThechallengescomefromthelowaccuracyandnoisydataoftheMicroElectroMechanicalSystemMEMStechnologywhichisthebasisofmodernminiaturizedinertialsensorsInthisarticlewedescribeanovelapproachtoobtainanestimationoftheorientationinquaternionformfromtheobservationsofgravityandmagneticfieldOurapproachprovidesaquaternionestimationasthealgebraicsolutionofasystemfrominertialmagneticobservationsWeseparatetheproblemsoffindingthetiltquaternionandtheheadingquaternionintwosubpartsofoursystemThisprocedureisthekeyforavoidingtheimpactofthemagneticdisturbancesontherollandpitchcomponentsoftheorientationwhenthesensorissurroundedbyunwantedmagneticfluxWedemonstratethevalidityofourmethodfirstanalyticallyandthenempiricallyusingsimulateddataWeproposeanovelcomplementaryfilterforMAVsthatfusestogethergyroscopedatawithaccelerometerandmagneticfieldreadingsThecorrectionpartofthefilterisbasedonthemethoddescribedaboveandworksforbothIMUInertialMeasurementUnitandMARGMagneticAngularRateandGravitysensorsWeevaluatetheeffectivenessofthefilterandshowthatitsignificantlyoutperformsothercommonmethodsusingpubliclyavailabledatasetswithgroundtruthdatarecordedduringarealflightexperimentofamicroquadrotorhelicopterauthordroppingparticlefamilyValentigivenRobertoGnondroppingparticleparsenamesfalsesuffixdroppingparticlefamilyDryanovskigivenIvannondroppingparticleparsenamesfalsesuffixdroppingparticlefamilyXiaogivenJizhongnondroppingparticleparsenamesfalsesuffixidITEM1issueddateparts2015page1930219330titleKeepingaGoodAttitudeAQuaternionBasedOrientationFilterforIMUsandMARGstypearticlejournalurishttpwwwmendeleycomdocumentsuuid1d86f94405af4a08804cb3392682b189mendeleyformattedCitation1plainTextFormattedCitation1previouslyFormattedCitation1propertiesnoteIndex0schemahttpsgithubcomcitationstylelanguageschemarawmastercslcitationjsonRNDMGYCqHV9E6}[1]
+Estimasi orientasi sangat penting untuk mendapatkan feedback yang baik dari controller sensor yang low cost pada
+kendaraan MAV (Micro Aerial Vehicle). Tantangannya adalah rendahnya akurasi pada sensor dan noisy dari sensor IMU MEMS.
+Penyelesaian masalah pada paper ini memisahkan problem tilt quaternion dan arah quaternion menjadi 2 sub sistem.
+Prosedur ini di klaim untuk memisahkan disturbansi magnet roll dan pitch dari medan magnet yang tidak diinginkan. Paper
+ini merupakan algroritma complementary filter baru untuk 9 DoF
+
+
+\bigskip
+
+\begin{equation*}
+q_B^A=[q_0\ q_1\ q_2\ q_3]
+\end{equation*}
+\begin{equation*}
+q_B^{A^{\text *}}=q_A^B=[q_0\ -q_1\ -q_2\ -q_3]^T
+\end{equation*}
+\begin{equation*}
+p\otimes
+q=\left[\begin{matrix}p_0q_0-p_1q_1-p_2q_2-p_3q_3\\p_0q_1+p_1q_0+p_2q_3-p_3q_1\\p_0q_2-p_1q_3+p_2q_0+p_3q_1\\p_0q_3+p_1q_2-p_2q_1+p_3q_0\end{matrix}\right]
+\end{equation*}
+Rumus nya sama kayak madgwick filter, karena emang masih sama-sama complementary filter. Yang membedakan perhitungan itu
+cuma \textstyleEmphasis{Quaternion from Earth-Field Observations} : *Quaternion from Accelerometer Readings *dan
+\textstyleEmphasis{Quaternion from Magnetometer Readings}
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+[1]\ \ R. G. Valenti, I. Dryanovski, and J. Xiao, ``Keeping a Good Attitude: A Quaternion-Based Orientation Filter for
+IMUs and MARGs,'' pp. 19302--19330, 2015, doi: 10.3390/s150819302.
+\ [2060?]
+\end{document}
