@@ -301,3 +301,4 @@ TSWLatexianTemp*
 *.jpg
 *.png
 
+.vscode
