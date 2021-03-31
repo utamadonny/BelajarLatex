@@ -302,3 +302,15 @@ TSWLatexianTemp*
 *.png
 
 .vscode
+.fuse_hidden0000231b00000004
+.gitignore
+.fuse_hidden0000233000000002
+.fuse_hidden0000232f00000001
+.fuse_hidden0000231700000003
+*.ps
+*.dot
+
+.fuse_hidden0000231b00000009
+.fuse_hidden0000232f0000000a
+.fuse_hidden000023170000000b
+.fuse_hidden000023300000000c
