@@ -1,0 +1,119 @@
+\documentclass[10pt]{article}
+\usepackage{tikz}
+\usepackage[pdf,png]{graphviz}
+\usepackage[png]{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\begin{document}
+\title{Tugas 5 : Soal Pemodelan dan Simulasi }
+\author{Donny Prakarsa Utama\\3332170032\\Pemodelan dan Indentifikasi Sistem-1}
+\maketitle
+
+Dari 2 artikel berikut,
+\begin{itemize}
+\item Pengidentifikasian Parameter Fungsi Alih Sistem Pada Plant Simulasi Orde Tiga Dan Empat Dengan Metode Algoritma Genetik
+\item Sistem Identifikasi Model Dinamik Proton Exchange Membrane Fuel Cell (Pemfc) Dalam Struktur Blok Wiener
+\end{itemize}
+\begin{enumerate}
+\item cari permasalahan
+\item metode dihubungkan paramterik dan nonparamterik
+\item Hasil
+\end{enumerate}
+
+Jawab:
+\begin{enumerate}
+\item Permasalahan:
+
+Studi kasus pertama ialah prediksi laju kendaraan menggunakan filter moving average dan ANN.
+Diketahui,
+F(t) = gaya yang dihasilkan oleh mobil = 80t N yang diasumsikan.
+V = kecepatan ($m/s$)
+M = massa kendaraan = $1000 kg$
+b = koefisien gesekan = $40 N_s/m$
+\begin{figure}
+    \centering
+    \includegraphics[width=40mm]{modelmobil}
+    \caption{Gambar Model}
+\end{figure}
+\item dengan metode non paramterik ANN
+Dengan Hukum Newton Aksi-Reaksi
+$$F-F_gesek=m\alpha$$
+$$F-bv=m\alpha$$
+$$F=m \dv{v}{t}+bv$$
+jadi,
+$$80t=1000 \dv{v}{t}+40v$$
+sehingga laplace-nya
+$$ V(S)=\frac{2}{s^2}-\frac{50}{s}+\frac{50}{s+0.04}$$
+inverse laplace
+$$ v(t)=2t-50+50e^{-0.04t} $$
+
+Dengan Matlab :
+\begin{verbatim}
+clear;
+% Define and plot time vs velocity for the model
+t=[0:.5:30]';
+v=2*t-50+50*exp(-0.04*t);
+grid
+figure(1);
+plot(t,v);
+xlabel("time in seconds");ylabel("speed in m/s");
+ 
+%Define and plot training as well as checking data
+data=[t v];
+trndata=data(1:2:size(t),:);
+chkdata=data(2:2:size(t),:);
+grid
+figure(2);
+plot(trndata(:,1),trndata(:,2),"o",chkdata(:,1),chkdata(:,2),"x");
+xlabel("time in seconds");ylabel("speed in m/s");
+%initialize ANN
+trainpoint=trndata(:,1)';
+trainoutput=trndata(:,2)';
+net=newff(minmax(trainpoint),[10 1],{'tansig' 'purelin'});
+%Simulate and plot the network ouput without training
+Y=sim(net,trainpoint);
+grid
+figure(3);
+plot(trainpoint,trainoutput,trainpoint,Y,"o");
+%Initialize parameter
+net.trainParam.epochs=100;
+net.trainParam.goal=0.0001;
+%Train the network and plot the output
+net=train(net,trainpoint,trainoutput);
+Y=sim(net,trainpoint);
+figure(4);
+plot(trainpoint,trainoutput,trainpoint,Y,"o");
+%test the network and plot the error
+checkpoint=chkdata(:,1)';
+checkoutput=chkdata(:,2)';
+W=sim(net,checkpoint);
+e=W-checkoutput;
+grid
+figure(5);
+plot(e);
+\end{verbatim}
+
+\item Hasil
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=200]{nkontinyu}
+    \caption{Grafik Waktu Kontinyu}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=200]{barbelajarANN}
+    \caption{Bar Pembelajaran ANN}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width= 300]{modelANN}
+    \caption{Model ANN}
+\end{figure}
+
+\end{enumerate}
+
+
+\end{document}
