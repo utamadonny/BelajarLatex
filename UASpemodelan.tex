@@ -1,0 +1,93 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+\begin{document}
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+\title{UAS Pemodelan : Autocorrelation dan Crosscorrelation Function pada Temperatur dan Bintik Matahari }
+\author{Donny Prakarsa Utama\\ \texttt{3332170032}
+\and Ringga Dwi Raju\\ \texttt{3332170029} }
+\author{\IEEEauthorblockN{1\textsuperscript{st} Donny Prakarsa Utama}
+    \IEEEauthorblockA{\textit{3332170032} \\
+    \textit{Universitas Sultan Ageng Tirtayasa}\\}
+    \and
+    \IEEEauthorblockN{2\textsuperscript{nd} Ringga Dwi Raju}
+    \IEEEauthorblockA{\textit{3332170029} \\
+    \textit{Universitas Sultan Ageng Tirtayasa}}}
+\maketitle
+\section{Latar Belakang}
+Dalam Suatu Pemodelan, hubungan antara variable selalu menjadi objek yang harus selalu diamati perilakukanya. Dalam statistic, dua buah nilai atau variable bisa diduga mempunyai sebab akibat. Isitilah ini biasanya disebut dengan hubungan variable terikat(dependen) dan variable bebas(independen). 
+Analisis korelasi dan analisis regresi biasanya digunakan untuk melihat bagaimana hubungan dua jenis variable tertentu. Analisis korelasi digunakan untuk melihat hubungan antara variable bebas dengan variable terikatnya, maupun sesame variable bebas. Sedangan analisis regresi digunakan untuk menunjukkan hubungan matematis antara variable terikat dan variable bebas. Akan tetapi dalam uas  ini analisis regresi tidak di bahas karena tujuannya hanya untuk analisis korelasinya saja.
+Autokorelasi merupakan adanya korelasi antar anggota sampel atau data pengamatan yang diurutkan berdasarkan waktu (Ir.M.Iqbal Hasan.2001:285). Korelasi mengukur derajat keeratan hubungan antara dua buah variabel yang berbeda, sedangkan autokorelasi mengukur derajat keeratan hubungan diantara nilai – nilai yang berurutan pada variabel yang sama atau pada variabel itu sendiri. Dengan demikian terlihat adanya perbedaan pengertian autokorelasi dengan korelasi, yang mana sama – sama mengukur derajat keeratan hubungan(Siti Rahayu.2009).
+Apabila terjadi keterkaitan antara pengamatan yang satu dengan pengamatan yang lain, atau dengan kata lain terjadi ketergantungan antara error ke- dengan error ke- maka autokorelasi akan terjadi dengan notasi sebagai berikut:
+$$E(\epsilon_{i}\epsilon_{j})\neq 0; i \neq j$$
+Nilai nilai tengah tersebut menyatakan autokorelasi. Akan tetapi jika dilihat secara statistic nilai auto korelasi tersebut menyatkaan mean dari suatu data.
+$$\mu_{g}(X)=E[g(X)]=\sum_{n = 1}^{n} g(x_{i}f(x_{i}))  $$
+Misalakan suatu dataa
+\begin{table}[h!]
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	$X$&0 & 1 &2&3\\
+	\hline
+	$F(X)$&$\frac{1}{3}$&$\frac{1}{2}$&0&$\frac{1}{6}$\\
+	\hline
+\end{tabular}
+\end{table}
+\newline
+maka\\
+$$\mu = E(X)=0\left(\frac{1}{3}\right)+1\left(\frac{1}{2}\right)+2(0)+3\left(\frac{1}{6}\right)=1$$
+Data ata series tersebut jika dipandang sebagai suatu statistic maka bisa didapatkan ragam dan simpangan baku data tersebut. Nilai ragam bisa didapatkan dengan persamaan berikut.
+$$\sigma^2=E\left[\left(X-\mu\right)^2\right]=\sum_{1}^{n}{\left(x_i-\mu\right)^2f\left(x_i\right)}$$
+Atau bisa disederhanakan
+$$\sigma^2=E\left(X^2\right)-\mu^2$$
+Dari contoh di atas, 
+$$\left(0^2\left(\frac{1}{3}\right)+1^2\left(\frac{1}{2}\right)+2^2\left(0\right)+3^2\left(\frac{1}{6}\right)\right)-1=1$$
+Dari ragam contoh ragam tersebut didapatkan kesimpulan bahwa data tersebut memiliki ragam yang cukup kecil.
+Hubungan autokorelasi dengan regresi akan mengakibatkan standar error koefisien regrei menjadi besar.  Shinga kebenarannya kurang bisa dipercaya.
+Setelah mengetahui konsekuensi akibat masalah autokorelasi, maka solusi untuk masalah autokorelasi berhubungan residual. Autokorelasi yang dihasilkan pada regresi biasanya menggunakan data berkala(time series). Data berkala ini biasanya menggambarakn keadaan dari waktu ke waktu(tahun ke tah, bulan ke bulan,minggu ke minggu, hari ke hari dan seteresunya). Cirinya interval dari waktu ke waktu tersebut selalu sama. Sehingga dalam simulasi model ini, data yang diambil adalah data temperature dan posisi matahari. Berikut ini adalah data yang dimaksud (Gambar 1 dan Gambar 2)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=90mm]{rattemp.png}
+	\caption{Data Suhu Tahun ke Tahun}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=90mm]{ratsun.png}
+	\caption{Data Bintik Maatahari Tahun ke Tahun}
+\end{figure}
+\section{Langkah Simulasi}
+Data time series akan di lakukan operasi autokorelasi untuk menhasilkan kesimpulan bahwa data tersebut memliki variansi yang kecil dan nilai ekspetasi yang sekecil mungkin. Berikut ini adalah grafik autokorelasi temperature dan autokorelasi sunspot(Gambar 3, Gambar 4, dan Gambar 5)
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=90mm]{ratatemp.png}
+	\caption{Autocorrelation Data Suhu}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=90mm]{ratasun.png}
+	\caption{Autrocorrelation Data Bintik Matahari}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=90mm]{ratcross.png}
+	\caption{Crosscorrelation}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=90mm]{ratall.png}
+	\caption{Ringkasan}
+\end{figure}
+\end{document}
